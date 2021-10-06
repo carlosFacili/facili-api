@@ -1,13 +1,10 @@
 package br.com.estudo.facili.entity;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+
 @Entity
 @Table
 public class Pedido {
@@ -65,3 +62,5 @@ public class Pedido {
         this.notas = notas;
     }
 }
+
+
