@@ -1,37 +1,20 @@
-package br.com.estudo.facili.entity;
+package br.com.estudo.facili.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import br.com.estudo.facili.entity.Pedido;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@Entity
-@Table
-public class Pedido {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class PedidoRequest {
 
     private String codigo;
 
     private LocalDateTime data_criacao;
 
+    private String produto;
+
     private String status;
 
     private String notas;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getCodigo() {
         return codigo;
@@ -49,6 +32,14 @@ public class Pedido {
         this.data_criacao = data_criacao;
     }
 
+    public String getProduto() {
+        return produto;
+    }
+
+    public void setProduto(String produto) {
+        this.produto = produto;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -63,5 +54,16 @@ public class Pedido {
 
     public void setNotas(String notas) {
         this.notas = notas;
+    }
+
+
+    public static Pedido converteParaEntidade(PedidoRequest pedido) {
+        Pedido entidade = new Pedido();
+        entidade.setCodigo(pedido.getCodigo());
+        entidade.setData_criacao(LocalDateTime.now());
+        entidade.setStatus(pedido.getStatus());
+        entidade.setNotas(pedido.getNotas());
+
+        return entidade;
     }
 }
