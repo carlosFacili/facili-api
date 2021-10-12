@@ -1,15 +1,11 @@
 package br.com.estudo.facili.controller;
 
 import br.com.estudo.facili.dto.PedidoRequest;
+import br.com.estudo.facili.dto.PedidoResponse;
 import br.com.estudo.facili.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
- 
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -22,12 +18,17 @@ public class PedidoController {
 
     @PostMapping
     public void criarPedido(@RequestBody PedidoRequest pedido) {
-        System.out.println(pedido.getProduto());
         this.pedidoService.criaPedido(pedido);
     }
 
     @GetMapping
     public List listarPedidos() {
         return this.pedidoService.listaTodosPedidos();
+    }
+
+    @RequestMapping(name = "/filtro")
+    @GetMapping
+     public PedidoResponse filtrarPedido(@RequestParam("codigo") String codigo) {
+        return this.pedidoService.filtroPorCodigo(codigo);
     }
 }

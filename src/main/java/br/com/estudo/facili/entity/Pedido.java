@@ -13,6 +13,8 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String produto;
+
     private String codigo;
 
     private LocalDateTime data_criacao;
@@ -60,6 +62,14 @@ public class Pedido {
 
     public void setNotas(String notas) {
         this.notas = notas;
+    }
+
+    public String getProduto() {
+        return produto;
+    }
+
+    public void setProduto(String produto) {
+        this.produto = produto;
     }
 }
 

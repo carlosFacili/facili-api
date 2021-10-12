@@ -1,14 +1,14 @@
 package br.com.estudo.facili.dto;
 
 import br.com.estudo.facili.entity.Pedido;
+
 import java.time.LocalDateTime;
 
-
-public class PedidoRequest {
+public class PedidoResponse {
 
     private String codigo;
 
-    private LocalDateTime data_criacao;
+    private String data_criacao;
 
     private String produto;
 
@@ -24,11 +24,11 @@ public class PedidoRequest {
         this.codigo = codigo;
     }
 
-    public LocalDateTime getData_criacao() {
+    public String getData_criacao() {
         return data_criacao;
     }
 
-    public void setData_criacao(LocalDateTime data_criacao) {
+    public void setData_criacao(String data_criacao) {
         this.data_criacao = data_criacao;
     }
 
@@ -56,15 +56,14 @@ public class PedidoRequest {
         this.notas = notas;
     }
 
+    public static PedidoResponse converterParaDto(Pedido entidade) {
+        PedidoResponse response = new PedidoResponse();
 
-    public static Pedido converteParaEntidade(PedidoRequest pedido) {
-        Pedido entidade = new Pedido();
-        entidade.setCodigo(pedido.getCodigo());
-        entidade.setProduto(pedido.getProduto());
-        entidade.setData_criacao(LocalDateTime.now());
-        entidade.setStatus(pedido.getStatus());
-        entidade.setNotas(pedido.getNotas());
+        response.setCodigo(entidade.getCodigo());
+        response.setProduto(entidade.getProduto());
+        response.setData_criacao(entidade.getData_criacao().toString());
 
-        return entidade;
+        return response;
     }
+
 }
